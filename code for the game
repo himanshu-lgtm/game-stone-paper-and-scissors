@@ -1,0 +1,39 @@
+import random
+
+# Define possible moves
+moves = ["stone", "paper", "scissors"]
+
+# Function to determine the winner
+def determine_winner(player_move, computer_move):
+    if player_move == computer_move:
+        return "It's a tie!"
+    elif (player_move == "stone" and computer_move == "scissors") or \
+         (player_move == "paper" and computer_move == "stone") or \
+         (player_move == "scissors" and computer_move == "paper"):
+        return "You win!"
+    else:
+        return "You lose!"
+
+# Main game loop
+def play_game():
+    while True:
+        # Get player's move
+        player_move = input("Enter your move (stone, paper, scissors) or 'quit' to exit: ").lower()
+        if player_move == 'quit':
+            print("Thanks for playing!")
+            break
+        if player_move not in moves:
+            print("Invalid move. Please try again.")
+            continue
+
+        # Get computer's move
+        computer_move = random.choice(moves)
+        print(f"Computer chose: {computer_move}")
+
+        # Determine the winner
+        result = determine_winner(player_move, computer_move)
+        print(result)
+
+# Start the game
+if __name__ == "__main__":
+    play_game()
